@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- 视频背景 -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline preload="auto" src="material/background/Falling%20book.mp4"></video>
+    </div>
+    
+    <!-- Script to ensure video plays -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background video');
+            // Force play on page load
+            video.play().catch(function(error) {
+                console.log("Video play failed:", error);
+            });
+            
+            // Try to play again if user interacts with the page
+            document.addEventListener('click', function() {
+                video.play();
+            }, { once: true });
+        });
+    </script>
     <!-- 导航栏 -->
     <header>
         <div class="container">
