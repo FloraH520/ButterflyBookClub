@@ -14,28 +14,37 @@
         <video autoplay muted loop playsinline preload="auto" src="material/background/Falling%20book.mp4"></video>
     </div>
     
-    <!-- Script to ensure video plays -->
+    <!-- Script to ensure videos play -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('.video-background video');
-            // Force play on page load
-            video.play().catch(function(error) {
-                console.log("Video play failed:", error);
-            });
+            // Get all videos on the page
+            const videos = document.querySelectorAll('video');
             
-            // Try to play again if user interacts with the page
+            // Function to play all videos
+            function playAllVideos() {
+                videos.forEach(video => {
+                    video.play().catch(function(error) {
+                        console.log("Video play failed:", error);
+                    });
+                });
+            }
+            
+            // Try to play videos on page load
+            playAllVideos();
+            
+            // Try to play videos again if user interacts with the page
             document.addEventListener('click', function() {
-                video.play();
-            }, { once: true });
+                playAllVideos();
+            });
         });
     </script>
     <!-- 导航栏 -->
     <header>
         <div class="container">
             <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-book-reader"></i>
-                </div>
+            <div class="logo-icon">
+                <img src="material/Butterfly-logo.png" alt="Butterfly Book Club Logo">
+            </div>
                 <h1>蝴蝶书会</h1>
             </div>
             <nav>
@@ -65,19 +74,12 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-illustration">
-                    <i class="fas fa-book-open"></i>
-                    <i class="fas fa-users"></i>
-                    <i class="fas fa-lightbulb"></i>
-                    <i class="fas fa-butterfly"></i>
+                <div class="hero-event-gallery" id="eventGallery">
+                    <!-- Images will be loaded dynamically via JavaScript -->
                 </div>
             </div>
         </div>
-        <div class="wave-divider">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-            </svg>
-        </div>
+        <!-- Wave divider removed -->
     </section>
 
     <!-- 特色区域 -->
@@ -137,8 +139,9 @@
             </div>
             <div class="about-image">
                 <div class="about-illustration">
-                    <i class="fas fa-users"></i>
-                    <i class="fas fa-comments"></i>
+                    <video autoplay muted loop playsinline preload="auto">
+                        <source src="material/background/Flipping%20book.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
@@ -151,9 +154,7 @@
             <div class="activities-slider">
                 <div class="activity-card">
                     <div class="activity-image">
-                        <div class="activity-illustration">
-                            <i class="fas fa-book"></i>
-                        </div>
+                        <img src="material/主题读书会.JPG" alt="主题读书会" class="activity-img">
                     </div>
                     <div class="activity-content">
                         <h3>主题读书会</h3>
@@ -163,9 +164,7 @@
                 </div>
                 <div class="activity-card">
                     <div class="activity-image">
-                        <div class="activity-illustration">
-                            <i class="fas fa-microphone"></i>
-                        </div>
+                        <img src="material/作者在线对话.JPG" alt="作者在线对话" class="activity-img">
                     </div>
                     <div class="activity-content">
                         <h3>作者在线对话</h3>
@@ -175,9 +174,7 @@
                 </div>
                 <div class="activity-card">
                     <div class="activity-image">
-                        <div class="activity-illustration">
-                            <i class="fas fa-university"></i>
-                        </div>
+                        <img src="material/跨校思想论坛.JPG" alt="跨校思想论坛" class="activity-img">
                     </div>
                     <div class="activity-content">
                         <h3>跨校思想论坛</h3>
@@ -199,43 +196,63 @@
             <p class="section-description">我们已在波士顿多所高校建立了蝴蝶书会分会，共同构建跨校际的思想交流网络。</p>
             <div class="universities-grid">
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/MIT-icon.png" alt="MIT Logo">
+                    </div>
                     <p>麻省理工学院</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Harvard-icon.jpeg" alt="Harvard Logo">
+                    </div>
                     <p>哈佛大学</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Tufts-icon.png" alt="Tufts Logo">
+                    </div>
                     <p>塔夫茨大学</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/BU-icon.png" alt="Boston University Logo">
+                    </div>
                     <p>波士顿大学</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/BC-icon.jpeg" alt="Boston College Logo">
+                    </div>
                     <p>波士顿学院</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Northeastern-icon.png" alt="Northeastern Logo">
+                    </div>
                     <p>东北大学</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Brandeis-icon.png" alt="Brandeis Logo">
+                    </div>
                     <p>布兰迪斯大学</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Wellesley-icon.png" alt="Wellesley Logo">
+                    </div>
                     <p>韦尔斯利学院</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Babson-icon.png" alt="Babson Logo">
+                    </div>
                     <p>巴布森学院</p>
                 </div>
                 <div class="university-logo">
-                    <div class="university-icon"><i class="fas fa-university"></i></div>
+                    <div class="university-icon">
+                        <img src="material/college-icon/Emerson-icon.png" alt="Emerson Logo">
+                    </div>
                     <p>艾默生学院</p>
                 </div>
             </div>
@@ -305,9 +322,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <div class="footer-logo-icon">
-                        <i class="fas fa-book-reader"></i>
-                    </div>
+                <div class="footer-logo-icon">
+                    <img src="material/Butterfly-logo.png" alt="Butterfly Book Club Logo">
+                </div>
                     <h2>蝴蝶书会</h2>
                     <p>用阅读的翅膀，连接思想的力量</p>
                 </div>

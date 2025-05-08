@@ -147,7 +147,55 @@ function toggleLanguage() {
     localStorage.setItem('butterflybookclub_lang', currentLang);
 }
 
+// 事件图片轮播功能
+function initEventGallery() {
+    const eventGallery = document.getElementById('eventGallery');
+    if (!eventGallery) return;
+    
+    // 事件图片路径数组
+    const eventImages = [
+        'material/events/Harvard-event.jpg',
+        'material/events/Harvard-event2.jpg'
+    ];
+    
+    // 打乱图片顺序
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    
+    const shuffledImages = shuffleArray([...eventImages]);
+    
+    // 创建并添加图片元素
+    shuffledImages.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Event Image';
+        img.className = index === 0 ? 'active' : '';
+        eventGallery.appendChild(img);
+    });
+    
+    // 设置图片轮播
+    let currentIndex = 0;
+    const images = eventGallery.querySelectorAll('img');
+    
+    function showNextImage() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+    }
+    
+    // 每4秒切换一次图片
+    setInterval(showNextImage, 4000);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // 初始化事件图片轮播
+    initEventGallery();
+    
     // 检查本地存储中的语言偏好
     const savedLang = localStorage.getItem('butterflybookclub_lang');
     if (savedLang) {

@@ -275,14 +275,19 @@ header .container {
     width: 40px;
     height: 40px;
     margin-right: 10px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 1.5rem;
+    overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .logo h1 {
@@ -377,7 +382,7 @@ nav ul li a:hover::after {
     align-items: center;
 }
 
-.hero-illustration {
+.hero-event-gallery {
     width: 100%;
     height: 300px;
     background: rgba(255, 255, 255, 0.1);
@@ -388,64 +393,30 @@ nav ul li a:hover::after {
     box-shadow: var(--shadow-lg);
     transform: perspective(1000px) rotateY(-5deg);
     transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     overflow: hidden;
 }
 
-.hero-illustration:hover {
+.hero-event-gallery:hover {
     transform: perspective(1000px) rotateY(0);
 }
 
-.hero-illustration i {
-    font-size: 3rem;
-    color: white;
+.hero-event-gallery img {
     position: absolute;
-    opacity: 0.8;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-.hero-illustration i:nth-child(1) {
-    top: 30%;
-    left: 30%;
-    font-size: 4rem;
-    animation: float 6s ease-in-out infinite;
-}
-
-.hero-illustration i:nth-child(2) {
-    top: 60%;
-    left: 60%;
-    font-size: 3.5rem;
-    animation: float 8s ease-in-out infinite;
-}
-
-.hero-illustration i:nth-child(3) {
-    top: 40%;
-    left: 70%;
-    font-size: 2.5rem;
-    animation: float 7s ease-in-out infinite;
-}
-
-.hero-illustration i:nth-child(4) {
-    top: 70%;
-    left: 25%;
-    font-size: 3rem;
-    animation: float 9s ease-in-out infinite;
-}
-
-
-
-.wave-divider {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
     width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    opacity: 0.7;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
 }
+
+.hero-event-gallery img.active {
+    opacity: 1;
+}
+
+
+
+/* Wave divider removed */
 
 /* 特色区域样式 */
 .features {
@@ -598,27 +569,13 @@ nav ul li a:hover::after {
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 
-.about-illustration i {
-    font-size: 5rem;
-    color: white;
-    position: absolute;
-    opacity: 0.8;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    animation: float 8s ease-in-out infinite;
-}
-
-.about-illustration i:nth-child(1) {
-    top: 40%;
-    left: 30%;
-    animation-delay: 1s;
-}
-
-.about-illustration i:nth-child(2) {
-    top: 50%;
-    left: 60%;
-    animation-delay: 2s;
+.about-illustration video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 活动展示样式 */
@@ -658,37 +615,14 @@ nav ul li a:hover::after {
     position: relative;
 }
 
-.activity-illustration {
+.activity-img {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
     transition: var(--transition);
 }
 
-.activity-illustration i {
-    font-size: 4rem;
-    color: white;
-    opacity: 0.8;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.activity-card:hover .activity-illustration {
+.activity-card:hover .activity-img {
     transform: scale(1.05);
 }
 
@@ -756,18 +690,19 @@ nav ul li a:hover::after {
 .university-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--primary-light), var(--secondary-light), var(--accent-light));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 15px;
+    overflow: hidden;
+    background-color: white;
 }
 
-.university-icon i {
-    font-size: 2.5rem;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+.university-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .university-logo p {
@@ -953,15 +888,20 @@ footer {
 .footer-logo-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 15px;
-    color: white;
-    font-size: 2rem;
+    overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .footer-logo h2 {
