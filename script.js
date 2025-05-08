@@ -280,25 +280,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 滚动动画
+    // 优化的滚动动画
     const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.feature-card, .activity-card, .university-logo, .join-option');
-        
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
+        // 使用requestAnimationFrame来优化滚动性能
+        requestAnimationFrame(() => {
+            const elements = document.querySelectorAll('.feature-card, .activity-card, .university-logo, .join-option');
             const windowHeight = window.innerHeight;
             
-            if (elementTop < windowHeight - 100) {
-                element.classList.add('visible');
-            }
+            elements.forEach(element => {
+                // 只处理尚未添加visible类的元素
+                if (!element.classList.contains('visible')) {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                }
+            });
         });
     };
     
     // 初始检查
     animateOnScroll();
     
-    // 滚动时检查
-    window.addEventListener('scroll', animateOnScroll);
+    // 使用节流函数优化滚动事件
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                animateOnScroll();
+                scrollTimeout = null;
+            }, 100); // 100ms的节流时间
+        }
+    });
     
     // 表单提交处理
     const contactForm = document.querySelector('.contact-form form');

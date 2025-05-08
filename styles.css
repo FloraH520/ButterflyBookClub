@@ -171,6 +171,7 @@ img {
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius-md);
     box-shadow: var(--shadow-md);
+    will-change: transform, opacity;
 }
 
 .section-title {
@@ -442,6 +443,7 @@ nav ul li a:hover::after {
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     text-align: center;
+    will-change: transform, opacity;
 }
 
 .feature-card:hover {
@@ -601,6 +603,7 @@ nav ul li a:hover::after {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    will-change: transform, opacity;
 }
 
 .activity-card:hover {
@@ -679,6 +682,7 @@ nav ul li a:hover::after {
     text-align: center;
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
+    will-change: transform, opacity;
 }
 
 .university-logo:hover {

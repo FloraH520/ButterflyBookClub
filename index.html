@@ -32,10 +32,10 @@
             // Try to play videos on page load
             playAllVideos();
             
-            // Try to play videos again if user interacts with the page
+            // Try to play videos again if user interacts with the page, but only once
             document.addEventListener('click', function() {
                 playAllVideos();
-            });
+            }, { once: true });
         });
     </script>
     <!-- 导航栏 -->
